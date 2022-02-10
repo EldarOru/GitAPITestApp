@@ -22,7 +22,7 @@ class DetailedFragmentViewModel(private val getCommitsUseCase: GetCommitsUseCase
                 getCommitsUseCase.getCommits(owner, repo)
             } catch (e: Exception){
                 withContext(Dispatchers.Main) {
-                    onError("Error : ${e.localizedMessage} ")
+                    onError("Error : ${e.message} ")
                 }
                 return@launch
             }

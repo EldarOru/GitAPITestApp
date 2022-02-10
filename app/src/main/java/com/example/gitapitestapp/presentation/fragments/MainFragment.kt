@@ -54,18 +54,11 @@ class MainFragment: Fragment() {
         }
 
         mainFragmentViewModel.errorMessage.observe(viewLifecycleOwner){
-            if (!mainFragmentViewModel.onSuccess.value!!){
+            if (mainFragmentViewModel.onSuccess.value == false) {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
         }
 
-        mainFragmentViewModel.onSuccess.observe(viewLifecycleOwner){
-            if (it){
-                mainFragmentBinding.reloadButton.visibility = View.GONE
-            }else{
-                mainFragmentBinding.reloadButton.visibility = View.VISIBLE
-            }
-        }
     }
 
     private fun setRecyclerView(){

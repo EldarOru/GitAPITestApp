@@ -16,6 +16,7 @@ class MainFragmentViewModel(private val getRepositoriesUseCase: GetRepositoriesU
     val repositoriesLiveData = returnRepositoriesUseCase.returnRepositories()
     private var job: Job? = null
 
+
     fun getRepositories(number: Int){
         job = CoroutineScope(Dispatchers.IO).launch {
             val response: Response<ArrayList<RepositoriesItem>> = try {
@@ -23,7 +24,7 @@ class MainFragmentViewModel(private val getRepositoriesUseCase: GetRepositoriesU
             }catch (e: Exception){
                 withContext(Dispatchers.Main) {
                     onSuccess.value = false
-                    onError("Error : ${e.localizedMessage} ")
+                    onError("Error : ${e.message} ")
                 }
                 return@launch
             }
@@ -33,7 +34,7 @@ class MainFragmentViewModel(private val getRepositoriesUseCase: GetRepositoriesU
                     onSuccess.value = true
                 } else {
                     onError("Error : ${response.message()}")
-                    onSuccess.value = false
+                    //onSuccess.value = false
                 }
             }
         }

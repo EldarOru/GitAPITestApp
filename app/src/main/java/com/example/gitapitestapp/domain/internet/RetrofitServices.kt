@@ -20,18 +20,11 @@ interface RetrofitServices {
     suspend fun getCommits(@Path("owner") owner: String, @Path("repo") repo: String): Response<ArrayList<ComItem>>
 
     companion object{
-        var okHttpClient: OkHttpClient = OkHttpClient.Builder()
-            .connectTimeout(5, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(15, TimeUnit.SECONDS)
-            .build()
-
         var retrofitService: RetrofitServices? = null
         fun getInstance() : RetrofitServices {
             if (retrofitService == null) {
                 val retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 retrofitService = retrofit.create(RetrofitServices::class.java)
