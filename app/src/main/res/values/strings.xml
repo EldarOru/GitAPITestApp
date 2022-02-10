@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GitAPITestApp</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="reload">Reload</string>
+    <string name="full_name">Full name:</string>
+    <string name="user_login">User login:</string>
+    <string name="sha_list">Sha list</string>
+</resources>
