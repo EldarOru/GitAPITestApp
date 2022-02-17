@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.gitapitestapp.domain.internet.RetrofitServices
-import com.example.gitapitestapp.domain.internet.RetrofitServices.Companion.MAGIC_NUMBER
 import com.example.gitapitestapp.domain.models.RepositoriesItem
 
 class RepositoriesDataSource(private val retrofitServices: RetrofitServices): PagingSource<Int, RepositoriesItem>() {
