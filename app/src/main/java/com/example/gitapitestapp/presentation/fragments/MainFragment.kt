@@ -47,6 +47,7 @@ class MainFragment: Fragment() {
         mainFragmentViewModel = ViewModelProvider(this, ViewModelFactory(RepositoryImpl)).get(MainFragmentViewModel::class.java)
         setRecyclerView()
         setOnClick()
+        //Log.d("ALLO", mainFragmentViewModel.passengers.)
         mainFragmentViewModel.getRepositories(RetrofitServices.MAGIC_NUMBER)
 
         mainFragmentViewModel.repositoriesLiveData.observe(viewLifecycleOwner){
