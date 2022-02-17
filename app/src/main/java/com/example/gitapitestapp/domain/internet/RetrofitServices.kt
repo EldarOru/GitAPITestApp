@@ -8,8 +8,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import okhttp3.OkHttpClient
-import java.util.concurrent.TimeUnit
 
 
 interface RetrofitServices {
@@ -32,7 +30,6 @@ interface RetrofitServices {
             return retrofitService!!
         }
 
-        const val MAGIC_NUMBER = 265165
         private const val BASE_URL = "https://api.github.com/"
     }
 }

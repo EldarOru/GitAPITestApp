@@ -15,18 +15,21 @@ class RepositoriesPagedAdapter(private val context: Context):
     PagingDataAdapter<RepositoriesItem, RepositoriesPagedAdapter.RepositoriesPagedHolder>(
         DIFF_CALLBACK) {
 
+
+    var onRepositoryClickListener: ((RepositoriesItem) -> Unit)? = null
+
     override fun onBindViewHolder(holder: RepositoriesPagedHolder, position: Int) {
         val rep: RepositoriesItem? = getItem(position)
         holder.repositoryBinging.apply {
             fullNameTv.text = rep?.full_name
             loginTv.text = rep?.owner?.login
             Glide.with(context).load(rep?.owner?.avatar_url).into(avatarIv)
-            /*
-            root.setOnClickListener {
-                onRepositoryClickListener?.invoke(rep)
-            }
 
-             */
+            root.setOnClickListener {
+                if (rep != null) {
+                    onRepositoryClickListener?.invoke(rep)
+                }
+            }
         }
     }
 
@@ -37,15 +40,11 @@ class RepositoriesPagedAdapter(private val context: Context):
     }
 
     class RepositoriesPagedHolder(val repositoryBinging: RepositoryItemBinding) :
-        RecyclerView.ViewHolder(repositoryBinging.root) {
-
-    }
+        RecyclerView.ViewHolder(repositoryBinging.root)
 
     companion object {
         private val DIFF_CALLBACK = object :
             DiffUtil.ItemCallback<RepositoriesItem>() {
-            // Concert details may have changed if reloaded from the database,
-            // but ID is fixed.
             override fun areItemsTheSame(
                 oldConcert: RepositoriesItem,
                 newConcert: RepositoriesItem

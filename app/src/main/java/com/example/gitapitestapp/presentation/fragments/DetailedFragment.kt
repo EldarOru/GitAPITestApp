@@ -2,7 +2,6 @@ package com.example.gitapitestapp.presentation.fragments
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,15 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.gitapitestapp.data.RepositoryImpl
 import com.example.gitapitestapp.databinding.DetailedFragmentBinding
-import com.example.gitapitestapp.presentation.adapters.RepositoriesListAdapter
 import com.example.gitapitestapp.presentation.adapters.ShaListAdapter
 import com.example.gitapitestapp.presentation.viewmodels.DetailedFragmentViewModel
-import com.example.gitapitestapp.presentation.viewmodels.MainFragmentViewModel
 import com.example.gitapitestapp.presentation.viewmodels.ViewModelFactory
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class DetailedFragment: Fragment() {

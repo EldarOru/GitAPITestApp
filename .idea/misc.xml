@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/Users/macdo/AndroidStudioProjects/GitAPITestApp/app/src/main/res/layout/activity_main.xml" value="0.1546875" />
         <entry key="..\:/Users/macdo/AndroidStudioProjects/GitAPITestApp/app/src/main/res/layout/detailed_fragment.xml" value="0.22554347826086957" />
+        <entry key="..\:/Users/macdo/AndroidStudioProjects/GitAPITestApp/app/src/main/res/layout/loader.xml" value="0.15104166666666666" />
+        <entry key="..\:/Users/macdo/AndroidStudioProjects/GitAPITestApp/app/src/main/res/layout/loader_repositories.xml" value="0.15104166666666666" />
         <entry key="..\:/Users/macdo/AndroidStudioProjects/GitAPITestApp/app/src/main/res/layout/main_fragment.xml" value="0.1" />
         <entry key="..\:/Users/macdo/AndroidStudioProjects/GitAPITestApp/app/src/main/res/layout/repository_item.xml" value="0.20677083333333332" />
         <entry key="..\:/Users/macdo/AndroidStudioProjects/GitAPITestApp/app/src/main/res/layout/sha_item.xml" value="0.16666666666666666" />

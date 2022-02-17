@@ -1,37 +1,27 @@
 package com.example.gitapitestapp.presentation.viewmodels
 
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.cachedIn
-import androidx.paging.liveData
-import com.example.gitapitestapp.data.RepositoryImpl
+import androidx.lifecycle.*
+import androidx.paging.*
 import com.example.gitapitestapp.domain.models.RepositoriesItem
+import com.example.gitapitestapp.domain.usecases.FetchRepositoriesLiveDataUseCase
 import com.example.gitapitestapp.domain.usecases.GetRepositoriesUseCase
 import com.example.gitapitestapp.domain.usecases.ReturnRepositoriesUseCase
-import com.example.gitapitestapp.presentation.adapters.RepositoriesDataSource
 import kotlinx.coroutines.*
-import retrofit2.Response
 
 class MainFragmentViewModel(private val getRepositoriesUseCase: GetRepositoriesUseCase,
-                            private val returnRepositoriesUseCase: ReturnRepositoriesUseCase): ViewModel(){
+                            private val returnRepositoriesUseCase: ReturnRepositoriesUseCase,
+                            private val fetchRepositoriesLiveDataUseCase: FetchRepositoriesLiveDataUseCase): ViewModel(){
     val onSuccess = MutableLiveData<Boolean>()
     val errorMessage = MutableLiveData<String>()
-    val repositoriesLiveData = returnRepositoriesUseCase.returnRepositories()
+    //val repositoriesLiveData = returnRepositoriesUseCase.returnRepositories()
     private var job: Job? = null
 
+    fun fetchDoggoImagesLiveData(): LiveData<PagingData<RepositoriesItem>> {
+        return fetchRepositoriesLiveDataUseCase.fetchRepositoriesLiveData()
+            .cachedIn(viewModelScope)
+    }
 
-
-    val passengers =
-        Pager(config = PagingConfig(pageSize = 10), pagingSourceFactory = {
-            RepositoriesDataSource(RepositoryImpl.retrofitServices)
-        }).liveData.cachedIn(viewModelScope)
-
-
-
+    /*
     fun getRepositories(number: Int){
         job = CoroutineScope(Dispatchers.IO).launch {
             val response: Response<ArrayList<RepositoriesItem>> = try {
@@ -54,9 +44,12 @@ class MainFragmentViewModel(private val getRepositoriesUseCase: GetRepositoriesU
                     //onSuccess.value = false
                 }
             }
+
         }
     }
 
+
+     */
     private fun onError(message: String) {
         errorMessage.value = message
     }

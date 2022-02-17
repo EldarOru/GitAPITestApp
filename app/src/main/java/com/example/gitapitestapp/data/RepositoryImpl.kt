@@ -16,8 +16,7 @@ import retrofit2.Response
 object RepositoryImpl: Repository {
 
     private val repositoriesListLiveData = MutableLiveData<ArrayList<RepositoriesItem>>()
-    val retrofitServices = RetrofitServices.getInstance()
-
+    private val retrofitServices = RetrofitServices.getInstance()
     override suspend fun getRepositories(number: Int): Response<ArrayList<RepositoriesItem>> {
         return retrofitServices.getRepositories(number)
     }
@@ -30,34 +29,15 @@ object RepositoryImpl: Repository {
         return repositoriesListLiveData
     }
 
-
-    fun getPager(pagingConfig: PagingConfig = getDefaultPageConfig()): LiveData<PagingData<RepositoriesItem>> {
+    override fun fetchRepositoriesLiveData(pagingConfig: PagingConfig): LiveData<PagingData<RepositoriesItem>> {
         return Pager(
             config = pagingConfig,
             pagingSourceFactory = { RepositoriesDataSource(retrofitServices) }
         ).liveData
     }
 
-    /**
-     * let's define page size, page size is the only required param, rest is optional
-     */
     fun getDefaultPageConfig(): PagingConfig {
-        return PagingConfig(pageSize = 0, enablePlaceholders = false)
+        return PagingConfig(pageSize = 20, enablePlaceholders = false)
     }
-
-    /*
-    fun getQuoteFromServer() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = retrofitServices.getRepositories(265165)
-            if (response.isSuccessful && response.body() != null) {
-                newRep = response.body() as List<RepositoriesItem>
-                Log.e("KEK", newRep.size.toString())
-                withContext(Dispatchers.Main){
-                }
-            }
-        }
-    }
-
-     */
 
 }

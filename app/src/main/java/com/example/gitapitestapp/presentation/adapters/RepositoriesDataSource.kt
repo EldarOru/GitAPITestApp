@@ -1,5 +1,6 @@
 package com.example.gitapitestapp.presentation.adapters
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.gitapitestapp.domain.internet.RetrofitServices
@@ -17,8 +18,8 @@ class RepositoriesDataSource(private val retrofitServices: RetrofitServices): Pa
             val response = retrofitServices.getRepositories(MAGIC_NUMBER + 100 * nextNum).body() as ArrayList<RepositoriesItem>
             LoadResult.Page(
                 data = response,
-                prevKey = if (nextNum > 0) nextNum - 1 else null,
-                nextKey = if (nextNum < 10) nextNum + 1 else null
+                prevKey = if (nextNum == DEFAULT_PAGE) null else nextNum - 1,
+                nextKey = if (response.isEmpty()) null else nextNum + 1
             )
         } catch (e: Exception) {
             LoadResult.Error(e)
