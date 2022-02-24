@@ -16,7 +16,7 @@ class MainFragmentViewModel(private val getRepositoriesUseCase: GetRepositoriesU
     //val repositoriesLiveData = returnRepositoriesUseCase.returnRepositories()
     private var job: Job? = null
 
-    fun fetchDoggoImagesLiveData(): LiveData<PagingData<RepositoriesItem>> {
+    fun fetchRepositoriesLiveData(): LiveData<PagingData<RepositoriesItem>> {
         return fetchRepositoriesLiveDataUseCase.fetchRepositoriesLiveData()
             .cachedIn(viewModelScope)
     }
@@ -47,8 +47,6 @@ class MainFragmentViewModel(private val getRepositoriesUseCase: GetRepositoriesU
 
         }
     }
-
-
      */
     private fun onError(message: String) {
         errorMessage.value = message

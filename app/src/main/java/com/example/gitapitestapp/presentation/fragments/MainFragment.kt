@@ -53,7 +53,7 @@ class MainFragment: Fragment() {
         ).get(MainFragmentViewModel::class.java)
         setRecyclerView()
         setOnClick()
-        fetchDoggoImagesLiveData()
+        fetchRepositoriesLiveData()
         setLoadStateListener()
 
         mainFragmentBinding.btnRetry.setOnClickListener {
@@ -70,8 +70,8 @@ class MainFragment: Fragment() {
         )
     }
 
-    private fun fetchDoggoImagesLiveData() {
-        mainFragmentViewModel.fetchDoggoImagesLiveData().observe(viewLifecycleOwner, Observer {
+    private fun fetchRepositoriesLiveData() {
+        mainFragmentViewModel.fetchRepositoriesLiveData().observe(viewLifecycleOwner, Observer {
             lifecycleScope.launch {
                 repositoriesListAdapter.submitData(it)
             }
